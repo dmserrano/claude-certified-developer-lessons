@@ -22,13 +22,13 @@ const max_tokens = 1024;
 // STEP 4 — fill these in from the pricing docs (reading-list.md, source #5).
 // Dollars per 1,000,000 tokens. Look up CURRENT rates; don't guess.
 const PRICING = {
-  input: 0,        // TODO: base input $/Mtok for MODEL
-  output: 0,       // TODO: output $/Mtok for MODEL
-  cacheWrite5m: 0, // TODO: 5-minute cache-write $/Mtok
-  cacheRead: 0,    // TODO: cache-read $/Mtok
+  input: 1.0,
+  output: 5.0,
+  cacheWrite5m: 1.25,
+  cacheRead: 0.10,
 };
 
-const longPrompt = '';
+const longPrompt = ``;
 
 async function main() {
   // ── STEP 1: basic non-streaming call ──────────────────────────────
@@ -73,28 +73,47 @@ async function main() {
   // TODO: run the CLI twice within 5 minutes and watch usage change:
   //       run 1 -> cache_creation_input_tokens > 0
   //       run 2 -> cache_read_input_tokens > 0
-  const response = await client.messages.create({
+  const stream = client.messages.stream({
     model: MODEL,
     max_tokens: max_tokens,
-    cache_control: { type: "ephemeral" },
     system: [
       { type: "text", text: longPrompt, cache_control: { type: "ephemeral" } },
     ],
     messages: [
-      {content: 'Just respond yes and that is it', role: 'user'}
+      {content: prompt, role: 'user'}
     ]
-  });
-    console.log(
-    `Input tokens: ${response.usage.input_tokens} \n
-    Output tokens: ${response.usage.output_tokens} \n
-    Cache Creation Input Tokens: ${response.usage.cache_creation_input_tokens} \n
-    Cache Creation Read Tokens: ${response.usage.cache_read_input_tokens} \n
-    `
-  )
+  })
+  .on('text', (text) => process.stdout.write(text));
+
+  const message = await stream.finalMessage();
 
   // ── STEP 4: cost accounting ───────────────────────────────────────
   // TODO: write estimateCost(usage) using PRICING, and print a line like:
   //       tokens: in=… out=… cache_read=… | cost: $0.0042
+  const estimateCost = ({
+    input_tokens,
+    output_tokens,
+    cache_creation_input_tokens,
+    cache_read_input_tokens
+  }: Anthropic.Messages.Usage) => {
+    let sum;
+    const cacheCreation = cache_creation_input_tokens ?? 0;
+    const cacheRead = cache_read_input_tokens ?? 0;
+
+    sum = (input_tokens * PRICING.input) / 1000000;
+    sum += (output_tokens * PRICING.output) / 1000000;
+    sum += (cacheCreation * PRICING.cacheWrite5m) / 1000000;
+    sum += (cacheRead * PRICING.cacheRead) / 1000000;
+
+    return `\nTokens 
+      in: ${input_tokens + cacheCreation + cacheRead}
+      out: ${output_tokens}
+      cache_read: ${cacheRead}
+      cost: ${sum.toFixed(6)}
+    `;
+  };
+
+  process.stdout.write(estimateCost(message.usage));
 }
 
 main().catch((err) => {
