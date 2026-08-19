@@ -1,4 +1,4 @@
-> How to use: your "you are here" map for this topic — destination, module checklist, what each file is, and the single next command · owned by /alter · next: `/editor` to review the Module 01 milestone.
+> How to use: your "you are here" map for this topic — destination, module checklist, what each file is, and the single next command · owned by /alter · next: start Module 02 with `/librarian` (sources) → `/tutor`.
 
 # 🎓 Claude Certified Developer
 
@@ -10,7 +10,7 @@ Started 2026-08-15 · part-time (~a few hours/week) · ~3-month arc.
 
 | # | Module | Type | Status |
 |---|--------|------|--------|
-| 01 | Claude API foundations | technical | ✅ built — awaiting `/editor` |
+| 01 | Claude API foundations | technical | ✅ done — passed Editor (live ~92% cache-cost drop) |
 | 02 | Prompt engineering for production | technical | ⬜ next up |
 | 03 | Tool use / function calling | technical | ⬜ not started |
 | 04 | Vision & multimodal | technical | ⬜ not started |
@@ -22,7 +22,7 @@ Started 2026-08-15 · part-time (~a few hours/week) · ~3-month arc.
 | 10 | Capstone: Pokémon TCG trade matcher | technical | ⬜ not started (built incrementally) |
 | 11 | Interview readiness | conceptual | ⬜ not started (ongoing thread) |
 
-**Progress: 0 / 11 milestones passed** — Module 01 built and awaiting Editor.
+**Progress: 1 / 11 milestones passed** — Module 01 done ✅.
 
 **Due for review:** nothing due today. Two prompt-caching items queued for on/after 2026-08-26 (see `progress.md`); `/flashcards` once due.
 
@@ -37,10 +37,10 @@ Started 2026-08-15 · part-time (~a few hours/week) · ~3-month arc.
 
 ## Next
 
-**Module 01 is built and passes its own acceptance check.** Hand it to the Editor:
+**Module 01 is done ✅** — passed the Editor with a live ~92% cache-cost drop (see `modules/01-claude-api-foundations/review.md`; a few optional polish notes there). Start **Module 02 — Prompt engineering for production** (structured card-list extraction; feeds the capstone):
 
 ```
-/editor
+/librarian
 ```
 
-Then start **Module 02 — Prompt engineering for production** with `/librarian` (sources) → `/tutor`.
+Then `/tutor`. Or `/roommate` for a cross-domain angle on what Module 01 taught.

@@ -1,2 +1,4 @@
 node_modules/
 .env
+# Optional local system prompt (e.g. the capstone PRD) — never commit it.
+system-prompt.local.txt

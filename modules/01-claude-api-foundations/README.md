@@ -1,6 +1,6 @@
 # Module 01 — Claude API foundations
 
-> How to use: the home for module 01 — everything below builds toward its milestone · owned by /tutor (+ /editor for review). Status: ✅ built, awaiting `/editor`.
+> How to use: the home for module 01 — everything below builds toward its milestone · owned by /tutor (+ /editor for review). Status: ✅ done — passed `/editor`.
 
 `type: technical` — Messages API, system prompts, params, streaming, token counting, model selection, prompt caching (TS SDK).
 

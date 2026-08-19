@@ -9,6 +9,7 @@
  *       (or `export ANTHROPIC_API_KEY=...` and drop --env-file)
  */
 import Anthropic from "@anthropic-ai/sdk";
+import { existsSync, readFileSync } from "node:fs";
 
 
 const client = new Anthropic(); // reads ANTHROPIC_API_KEY from the environment
@@ -28,7 +29,23 @@ const PRICING = {
   cacheRead: 0.10,
 };
 
-const longPrompt = ``;
+// The cached system prompt must be a LONG, STABLE prefix: >= 4,096 tokens
+// (Haiku 4.5's cache minimum) AND byte-identical across runs, so run 2's
+// cache_read hits the prefix run 1 wrote. A per-run random string would NOT
+// work — it changes the prefix, so every run is a fresh cache miss.
+//
+// Supply it one of two ways:
+//   1. Drop your own text in system-prompt.local.txt (gitignored) — e.g. the
+//      capstone PRD you don't want committed. Used automatically if present.
+//   2. Otherwise fall back to deterministic filler that's guaranteed long
+//      enough, so the CLI demonstrates caching on a fresh clone with no setup.
+const LOCAL_PROMPT_FILE = "system-prompt.local.txt";
+const longPrompt = existsSync(LOCAL_PROMPT_FILE)
+  ? readFileSync(LOCAL_PROMPT_FILE, "utf8")
+  : // ~5k tokens: same bytes every run, so it's cacheable and reproducible.
+    "You are a meticulous, concise assistant. Follow the user's instructions exactly and never invent facts.\n".repeat(
+      300,
+    );
 
 async function main() {
   // ── STEP 1: basic non-streaming call ──────────────────────────────
