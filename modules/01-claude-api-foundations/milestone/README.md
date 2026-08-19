@@ -1,6 +1,6 @@
 # Milestone 01 — Claude foundations CLI
 
-> How to use: your deliverable for module 01 lives here · owned by you (built in `../../exercises/01-first-calls/`) · next: when it passes the acceptance check below, run `/editor`.
+> How to use: your deliverable for module 01 lives here · owned by you (built in `../exercises/first-calls/`) · next: when it passes the acceptance check below, run `/editor`.
 
 ## Deliverable
 

@@ -1,8 +1,8 @@
-> How to use: your "you are here" map for this topic — destination, module checklist, what each file is, and the single next command · owned by /alter · next: `/tutor` to finish Module 01, Step 4.
+> How to use: your "you are here" map for this topic — destination, module checklist, what each file is, and the single next command · owned by /alter · next: `/editor` to review the Module 01 milestone.
 
 # 🎓 Claude Certified Developer
 
-**Destination:** lead Claude integration at your next company — fluent enough to talk about *and* execute these skills in senior-IC interviews, backed by a deployed **Pokémon TCG trade matcher** portfolio project.
+**Destination:** lead Claude integration at your next company — fluent enough to talk about *and* execute these skills in senior-IC interviews, backed by a deployed **Pokémon TCG trade matcher** (Deckmate) portfolio project.
 
 Started 2026-08-15 · part-time (~a few hours/week) · ~3-month arc.
 
@@ -10,8 +10,8 @@ Started 2026-08-15 · part-time (~a few hours/week) · ~3-month arc.
 
 | # | Module | Type | Status |
 |---|--------|------|--------|
-| 01 | Claude API foundations | technical | 🟡 in progress — Steps 1–3 done, on Step 4 (cost accounting) |
-| 02 | Prompt engineering for production | technical | ⬜ not started |
+| 01 | Claude API foundations | technical | ✅ built — awaiting `/editor` |
+| 02 | Prompt engineering for production | technical | ⬜ next up |
 | 03 | Tool use / function calling | technical | ⬜ not started |
 | 04 | Vision & multimodal | technical | ⬜ not started |
 | 05 | MCP (Model Context Protocol) | technical | ⬜ not started |
@@ -22,23 +22,25 @@ Started 2026-08-15 · part-time (~a few hours/week) · ~3-month arc.
 | 10 | Capstone: Pokémon TCG trade matcher | technical | ⬜ not started (built incrementally) |
 | 11 | Interview readiness | conceptual | ⬜ not started (ongoing thread) |
 
-**Progress: 0 / 11 modules complete** (Module 01 nearly there).
+**Progress: 0 / 11 milestones passed** — Module 01 built and awaiting Editor.
+
+**Due for review:** nothing due today. Two prompt-caching items queued for on/after 2026-08-26 (see `progress.md`); `/flashcards` once due.
 
 ## Files
 
 - `plan.md` — the spine: destination, baseline, cut list, module sequence *(/advisor)*
+- `reading-list.md` — ranked, vetted sources tied to modules *(/librarian)*
 - `progress.md` — dated session log + spaced-repetition review queue *(/tutor)*
-- `tutorial-01.md` — step-by-step build for Module 01 *(/tutor)*
-- `exercises/01-first-calls/` — the CLI you're building in *(/tutor)*
-- `milestones/01-claude-cli/` — your deliverable + acceptance check
-- `reading-list.md` — *(not yet — /librarian)*
+- `modules/01-claude-api-foundations/` — Module 01: `tutorial.md`, `guide.md`, `exercises/first-calls/` (the CLI), `milestone/` (deliverable + acceptance check)
+
+*(The capstone brief for Deckmate lives one level up in the `university/` root as `capstone-brief.md`.)*
 
 ## Next
 
-You're on **Module 01, Step 4 (cost accounting)** — the last step before the milestone.
-
-Fill `PRICING` with current Haiku 4.5 rates, write `estimateCost(usage)` (3 input buckets + output at their rates), print per-call cost. Then run the milestone acceptance check.
+**Module 01 is built and passes its own acceptance check.** Hand it to the Editor:
 
 ```
-/tutor
+/editor
 ```
+
+Then start **Module 02 — Prompt engineering for production** with `/librarian` (sources) → `/tutor`.

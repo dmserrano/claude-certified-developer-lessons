@@ -1,8 +1,8 @@
 # Tutorial 01 — Claude API foundations (TypeScript)
 
-> How to use: the step-by-step build guide for module 01, worked in the chat with your tutor · owned by /tutor · next: build in `exercises/01-first-calls/`, then finish the deliverable in `milestones/01-claude-cli/` and run `/editor`.
+> How to use: the step-by-step build guide for module 01, worked in the chat with your tutor · owned by /tutor · next: build in `exercises/first-calls/`, then finish the deliverable in `milestone/` and run `/editor`.
 
-You're building one CLI that grows across four steps. Each step adds a Claude-specific capability and a concept you'll be asked about in interviews. Sources referenced by number are in [`reading-list.md`](reading-list.md).
+You're building one CLI that grows across four steps. Each step adds a Claude-specific capability and a concept you'll be asked about in interviews. Sources referenced by number are in [`reading-list.md`](../../reading-list.md).
 
 Default model for this exercise: **`claude-haiku-4-5`** (cheapest, fast, plenty for foundations — bump to `claude-sonnet-5` when quality matters). Confirm current model IDs + pricing from source #5.
 
@@ -53,4 +53,4 @@ Now turn `usage` into money. (Source #5)
 
 ## Done when
 
-Your CLI hits every box on the milestone acceptance check in [`milestones/01-claude-cli/README.md`](milestones/01-claude-cli/README.md). Then run `/editor`.
+Your CLI hits every box on the milestone acceptance check in [`milestone/README.md`](milestone/README.md). Then run `/editor`.

@@ -4,7 +4,7 @@
 
 ## Module status
 
-- **01 — Claude API foundations** — ✅ built, awaiting Editor (all 4 steps done + integrated; CLI meets every acceptance-check box). Next: `/editor` to review `milestones/01-claude-cli`.
+- **01 — Claude API foundations** — ✅ built, awaiting Editor (all 4 steps done + integrated; CLI meets every acceptance-check box). Next: `/editor` to review `modules/01-claude-api-foundations/milestone`.
 - **02 — Prompt engineering for production** — ⬜ next up
 - 03–11 — ⬜ not started
 

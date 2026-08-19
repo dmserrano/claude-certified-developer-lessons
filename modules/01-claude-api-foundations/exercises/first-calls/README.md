@@ -1,11 +1,11 @@
 # Exercise 01 — first calls (the foundations CLI)
 
-> How to use: build the module-01 CLI here by filling in the `TODO`s, working through `tutorial-01.md` with your tutor · owned by /tutor.
+> How to use: build the module-01 CLI here by filling in the `TODO`s, working through `../../tutorial.md` with your tutor · owned by /tutor.
 
 ## Setup
 
 ```bash
-cd exercises/01-first-calls
+cd modules/01-claude-api-foundations/exercises/first-calls
 npm install
 cp .env.example .env   # then paste your key into .env
 ```
@@ -20,7 +20,7 @@ npx tsx cli.ts "your prompt here"
 
 ## What you're building
 
-One CLI that grows across four steps (see `tutorial-01.md`):
+One CLI that grows across four steps (see `../../tutorial.md`):
 
 1. **Basic call** — non-streaming Messages API call; print text + `usage`.
 2. **Streaming** — stream text to stdout; print `usage` at the end.
