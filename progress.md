@@ -5,7 +5,7 @@
 ## Module status
 
 - **01 — Claude API foundations** — ✅ **done** — passed Editor (live two-run trace: ~92% cache-cost drop; cost math verified). Optional polish notes in `modules/01-claude-api-foundations/review.md`.
-- **02 — Prompt engineering for production** — ⬜ next up
+- **02 — Prompt engineering for production** — ✅ **done** — passed Editor (extractor passes held-out `cases.ts` 5/5; Structured Outputs + XML + 4 few-shot examples). One cosmetic cleanup noted in `review.md` (stray `1.` on line 1).
 - 03–11 — ⬜ not started
 
 ## Review queue
@@ -14,8 +14,20 @@ _(items to revisit; format: `revisit <topic> on/after <YYYY-MM-DD>`)_
 
 - revisit prompt-caching cost math (write 1.25× vs read 0.1×; "amortizes after first reuse") on/after 2026-08-26 — was reasoned freshly this session, worth a cold recall
 - revisit cache-breakpoint placement (breakpoint lives on the *block* carrying `cache_control`; cached prefix = everything up to it) on/after 2026-08-26 — answer was slightly vague ("prompt level"), confirm it's crisp
+- revisit which layer defends against prompt injection — schema (format-hijack) vs XML+instruction+model-training (in-schema) on/after 2026-08-26 — initially credited XML for what the schema did
+- revisit faithful-vs-normalize rule + train/test leakage on/after 2026-08-27 — understood leakage in the abstract but copied few-shot inputs into `cases.ts` anyway; make the reflex stick
 
 ## Session log
+
+### 2026-08-19 — Module 02 built (card extractor)
+
+- Framed the module's spine: **shape vs accuracy** are separate problems — Structured Outputs guarantees shape (constrained decoding), prompt engineering (XML + few-shot) drives accuracy.
+- Step 1 (Structured Outputs): built the Zod `Card`/`CardList` schema + `messages.parse`/`zodOutputFormat`. Debugged a real dependency trap — the helper is pinned to **Zod v4**; bare `import { z } from "zod"` (v3) → `reading 'def'` error. Fix: `"zod/v4"`. Learner correctly reasoned `set` nullable defuses forced-fabrication and `.int().positive()` makes bad counts unrepresentable. Caught a `q`→`qty` field-name bug.
+- Step 2 (XML): learner initially credited XML tags for defeating a "say DONE" injection — corrected: the **schema** kills format-hijacks; XML+instruction raise reliability against *in-schema* injections (best-effort, not a guarantee).
+- Step 3 (few-shot): the module's big decision — **faithful extraction vs normalization**. Learner first over-applied "faithful" to `qty:"two"` (should be numeric — reading, not guessing), then landed the right rule: preserve identity (misspellings/sets), normalize casing, resolve canonical downstream (tool-use/RAG). Two silent bugs found: `EXAMPLES` defined but never interpolated into the prompt; examples contradicting the instruction on casing ("passed by luck").
+- Step 4 (reliability): built a held-out `cases.ts`. Learner hit **leakage** (copied few-shot inputs into cases) despite understanding it abstractly — good teachable moment. Also surfaced a **label bug** (dreepy `qty 4` vs model's correct `2`) — the model beat the test. Initial instinct was to blame the comparator; it was fine.
+- **Result:** 5/5 held-out, incl. `charzard` preserved (faithful misspelling) + lowercase-name normalization. Wrote `guide.md` w/ 7 flashcards.
+- **Resume here:** Milestone 02 built & passes → hand to `/editor`. After review, Module 03 (tool use) with `/librarian` → `/tutor`.
 
 ### 2026-08-16 — Module 01 kickoff
 
